@@ -284,9 +284,9 @@ plt.show()
      - Add a horizontal line for average time.
      - Label the x-axis, y-axis, and add a title.
      - Display the plot with gridlines.
-    
-   ### Easiest algorithm
-
+##
+##
+   # Easiest algorithm
 1. **Define `topological_sort(graph)` Function:**
    - Compute in-degrees for each vertex.
    - Use a queue to process vertices with zero in-degrees.
@@ -394,3 +394,7 @@ plt.grid(True)
 plt.show()
 ```
 ### Result : Thus, the python program to implement Topological Sorting using Decrease and Conquer has been executed successfully.
+
+# I shall expeditiously conclude the outstanding updates.
+## BY
+# HELLO WORLD 
