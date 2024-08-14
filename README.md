@@ -20,6 +20,7 @@
 8. **Record Execution Time:** Calculate and store the time taken.
 9. **Print Results:** Output the GCD and execution time.
 10. **Plot Execution Time:**
+    - Plot execution_times against measurement count. Add labels, title, and legend, then display.
     
 ### program
 ```
