@@ -26,7 +26,7 @@
 ```
 import time
 import matplotlib.pyplot as plt
-start_time = time.time()
+
 def gcd_recursive(a, b):
     if b == 0:
         return a
@@ -48,6 +48,7 @@ for i in range(num_measurements):
     
     # Measure execution time
     
+    start_time = time.time()
     result = reduce_gcd(numbers)
     execution_time = time.time() - start_time
     execution_times.append(execution_time)
@@ -95,7 +96,7 @@ plt.show()
 import time
 import matplotlib.pyplot as plt
 
-start_time = time.time()
+
 def sum_of_elements(numbers):
     return sum(numbers)
 
@@ -110,6 +111,7 @@ for i in range(num_measurements):
     
     # Measure execution time
     
+    start_time = time.time()
     result = sum_of_elements(numbers)
     execution_time = time.time() - start_time
     execution_times.append(execution_time)
@@ -172,7 +174,6 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-start_time = time.time()
 def strassen_matrix_multiplication(A, B):
     def split_matrix(matrix):
         r, c = matrix.shape
@@ -213,6 +214,7 @@ for _ in range(num_measurements):
     B = np.array([[int(input(f"Enter value for B[{i+1}][{j+1}]: ")) for j in range(n)] for i in range(n)])
     
     
+    start_time = time.time()
     result = strassen_matrix_multiplication(A, B)
     execution_time = time.time() - start_time
     execution_times.append(execution_time)
@@ -319,7 +321,7 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import deque
-start_time = time.time()
+
 def topological_sort(graph):
     """
     Perform topological sorting using Kahn's algorithm.
@@ -365,7 +367,8 @@ for _ in range(num_measurements):
             break
     
     # Measure execution t
-    
+        
+        start_time = time.time()
     try:
         result = topological_sort(graph)
         execution_time = time.time() - start_time
