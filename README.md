@@ -328,3 +328,89 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
+### 3
+```
+import time
+import matplotlib.pyplot as plt
+from collections import defaultdict, deque
+
+# Function for Topological Sort using Decrease and Conquer approach
+def topological_sort(graph):
+    in_degree = defaultdict(int)
+    for node in graph:
+        for neighbor in graph[node]:
+            in_degree[neighbor] += 1
+    
+    queue = deque([node for node in graph if in_degree[node] == 0])
+    
+    sorted_list = []
+    
+    while queue:
+        node = queue.popleft()
+        sorted_list.append(node)
+        
+        for neighbor in graph[node]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
+    
+    if len(sorted_list) == len(graph):
+        return sorted_list
+    else:
+        raise ValueError("Graph has a cycle, topological sorting is not possible.")
+
+# Runtime measurement function
+def measure_runtime(vertices, edges):
+    graph = defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+    
+    start_time = time.time()
+    try:
+        topological_sort(graph)
+    except ValueError:
+        return float('inf')  # Return infinity if sorting is not possible due to a cycle
+    end_time = time.time()
+    
+    return end_time - start_time
+
+# Main function to handle user input and plotting
+def main():
+    num_vertices = int(input("Enter the number of vertices: "))
+    num_edges = int(input("Enter the number of edges: "))
+    
+    edges = []
+    for _ in range(num_edges):
+        u = int(input("Enter the start vertex of the edge: "))
+        v = int(input("Enter the end vertex of the edge: "))
+        edges.append((u, v))
+    
+    # Measure runtime for different sizes
+    sizes = list(range(1, num_vertices + 1))
+    runtimes = []
+    
+    for size in sizes:
+        sample_edges = edges[:size]  # Use a subset of edges for each size
+        runtime = measure_runtime(size, sample_edges)
+        runtimes.append(runtime)
+    
+    # Print results
+    print(f"Topological sort results for sizes 1 to {num_vertices}:")
+    for size, runtime in zip(sizes, runtimes):
+        print(f"Size {size}: {runtime:.6f} seconds")
+    
+    # Plotting the runtime
+    plt.figure(figsize=(10, 6))
+    plt.plot([0] + sizes, [0] + runtimes, marker='o', linestyle='-', color='blue')
+    plt.xlabel('Number of Vertices')
+    plt.ylabel('Runtime (seconds)')
+    plt.title('Runtime of Topological Sort vs Number of Vertices')
+    plt.ylim(0, max(runtimes) * 1.1 if runtimes else 1)  # Set y-axis from 0 to 10% above max runtime
+    plt.xlim(0, max(sizes))  # Ensure x-axis covers the range from 0 to the max size
+    plt.grid(True)
+    plt.show()
+
+if __name__ == "__main__":
+    main()
+```
