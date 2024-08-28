@@ -414,3 +414,90 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+#### Thus, the python program to implement Topological Sorting using Decrease and Conquer has been executed successfully.
+### 4 
+```
+
+### Algorithm
+
+1. **Start**
+   
+2. **Heapify(arr, n, i)**: Maintain heap property.
+3. **Heap Sort(arr)**: Build heap, then sort.
+4. **Measure Runtime(arr)**: Time the sorting process.
+
+5. **Main**:
+   - Input: Read numbers.
+   - Process: Sort and measure runtime.
+   - Output: Print results.
+   - Plot: Runtime vs. size.
+
+6. **End**
+```
+```
+import time
+import matplotlib.pyplot as plt
+
+# Function to perform Heap Sort using Transform and Conquer approach
+def heap_sort(arr):
+    def heapify(arr, n, i):
+        largest = i
+        left = 2 * i + 1
+        right = 2 * i + 2
+
+        if left < n and arr[i] < arr[left]:
+            largest = left
+
+        if right < n and arr[largest] < arr[right]:
+            largest = right
+
+        if largest != i:
+            arr[i], arr[largest] = arr[largest], arr[i]
+            heapify(arr, n, largest)
+
+    n = len(arr)
+    # Build a max heap
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    # Extract elements from the heap
+    for i in range(n - 1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]  # Swap
+        heapify(arr, i, 0)
+
+# Runtime measurement function
+def measure_runtime(arr):
+    start_time = time.time()
+    heap_sort(arr)
+    end_time = time.time()
+    
+    return end_time - start_time
+
+# Main function to handle user input and plotting
+def main():
+    # Get the array of numbers from the user
+    input_string = input("Enter the numbers to be sorted, separated by spaces: ")
+    arr = list(map(int, input_string.split()))
+    
+    # Measure runtime
+    runtime = measure_runtime(arr.copy())  # Use a copy to preserve original data
+    
+    # Print results
+    print(f"Heap sort result: {arr}")
+    print(f"Runtime: {runtime:.6f} seconds")
+    
+    # Plotting (we'll plot a single point here as we only have one array)
+    plt.figure(figsize=(10, 6))
+    plt.plot([0, len(arr)], [0, runtime], marker='o', linestyle='-', color='blue')
+    plt.xlabel('Number of Elements')
+    plt.ylabel('Runtime (seconds)')
+    plt.title('Runtime of Heap Sort')
+    plt.ylim(0, runtime * 1.1)  # Set y-axis from 0 to 10% above the runtime
+    plt.xlim(0, len(arr))  # Set x-axis to the number of elements
+    plt.grid(True)
+    plt.show()
+
+if __name__ == "__main__":
+    main()
+```
+#### Thus, the program to implement character recognition using multilayer perceptron has been executed successfully.
